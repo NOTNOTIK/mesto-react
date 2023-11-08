@@ -1,108 +1,81 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './index.css';
+import Header from './components/Header.js';
+import Main from './components/Main.js';
+import Footer from './components/Footer.js';
+import PopupImage from './components/ImagePopup.js';
 function App() {
+  const handleEditProfileClick = () =>{
+    const popupEditProfile = document.querySelector('.popup_type_edit')
+    popupEditProfile.classList.add('popup_opened')
+  };
+  const  handleAddPlaceClick = () =>{
+    const popupFormCard = document.querySelector('.popup_type_add')
+    popupFormCard.classList.add('popup_opened')
+  };
+  const  handleEditAvatarClick = () =>{
+    const popupFormAvatar = document.querySelector('.popup_type_ava')
+    popupFormAvatar.classList.add('popup_opened')
+  };
   return(
     <>
-    <header className="header">
-      <img
-        src="<%=require('./images/Vector.svg')%>"
-        alt="Упсики"
-        className="header__logo"
-      />
-    </header>
-    <main className="main">
-      <section className="profile">
-        <div className="profile__card">
-          <div className="avatar">
-            <img
-              src="#"
-              alt="Здесь могла бы быть ваша аватарка:("
-              className="profile__avatar"
-            />
-          </div>
-          <div className="profile__info">
-            <div className="profile__name">
-              <h1 className="profile__title" />
-              <button
-                type="button"
-                className="profile__button profile__button_type_edit"
-              >
-                <img
-                  src="<%=require('./images/edit.svg')%>"
-                  className="image image_type_edit"
-                  alt="тут ты короче можешь отредачить"
-                />
-              </button>
-            </div>
-            <p className="profile__text" />
-          </div>
-        </div>
-        <button
-          type="button"
-          className="profile__button profile__button_type_add"
-        >
-          <img
-            src="<%=require('./images/add.svg')%>"
-            className="image image_type_add"
-            alt="Добавить"
-          />
-        </button>
-      </section>
-      <section className="cards"></section>
-    </main>
+
+   <Header/>
+   <Main 
+   onEditAvatar = {handleEditAvatarClick}
+   onEditProfile = {handleEditProfileClick}
+   onAddPlace = {handleAddPlaceClick}
+   />
     <template className="template" />
-    <footer className="footer">
-      <p className="footer__title">© 2023 Idk, who I am</p>
-    </footer>
-    <div className="popup popup_type_edit">
-      <div className="popup__container">
-        <h2 className="popup__title">Редактировать профиль</h2>
-        <form
-          className="popup__form"
-          name="popup_form_submit"
-          method="get"
-          noValidate=""
-        >
-          <fieldset className="popup__set">
-            <label className="popup__label">
-              <input
-                type="text"
-                placeholder="Введите имя"
-                name="name"
-                className="popup__input popup__input_type_name"
-                minLength={2}
-                maxLength={40}
-                required=""
-              />
-              <span className="error" id="name-error" />
-            </label>
-            <label className="popup__label">
-              <input
-                type="text"
-                placeholder="Введите род деятельности"
-                name="about"
-                className="popup__input popup__input_type_job"
-                minLength={2}
-                maxLength={200}
-                required=""
-              />
-              <span className="error" id="about-error" />
-            </label>
-            <button type="submit" className="popup__submit" name="submitEdit">
-              Сохранить
-            </button>
-          </fieldset>
-        </form>
-        <button type="button" className="popup__close" id="closeEdit" />
+   <Footer/>
+   <div className= 'popup popup_type_edit' >
+        <div className="popup__container">
+          <h2 className="popup__title">Редактировать профиль</h2>
+          <form
+            className="popup__form"
+            name="popup_form_edit"
+            method="get"
+            noValidate=""
+          >
+            <fieldset className="popup__set">
+              <label className="popup__label">
+                <input
+                  type="text"
+                  placeholder="Введите имя"
+                  name="name"
+                  className="popup__input popup__input_type_name"
+                  minLength={2}
+                  maxLength={40}
+                  required=""
+                />
+                <span className="error" id="name-error" />
+              </label>
+              <label className="popup__label">
+                <input
+                  type="text"
+                  placeholder="Введите род деятельности"
+                  name="about"
+                  className="popup__input popup__input_type_job"
+                  minLength={2}
+                  maxLength={200}
+                  required=""
+                />
+                <span className="error" id="about-error" />
+              </label>
+              <button type="submit" className="popup__submit" name="submitEdit">
+                Сохранить
+              </button>
+            </fieldset>
+          </form>
+          <button type="button" className="popup__close" id="closeEdit" />
+        </div>
       </div>
-    </div>
     <div className="popup popup_type_add">
       <div className="popup__container">
         <h2 className="popup__title">Новое место</h2>
         <form
           className="popup__form"
-          name="popup_form_addCard"
+          name="popup_form_add"
           method="get"
           noValidate=""
         >
@@ -144,7 +117,7 @@ function App() {
         <h2 className="popup__title">Сменить аватар</h2>
         <form
           className="popup__form"
-          name="popup_form_Avatar"
+          name="popup_form_ava"
           method="get"
           noValidate=""
         >
@@ -189,13 +162,7 @@ function App() {
         <button type="button" className="popup__close" id="closeDel" />
       </div>
     </div>
-    <div className="popup popup_type_image">
-      <div className="popup__img-container">
-        <img className="popup__image" src="#" alt="Изображение не загружено" />
-        <p className="popup__figcaption" />
-        <button type="button" className="popup__close" id="closeImg" />
-      </div>
-    </div>
+    <PopupImage/>
   </>
   )
 
