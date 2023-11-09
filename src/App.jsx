@@ -4,7 +4,7 @@ import Header from './components/Header.js';
 import Main from './components/Main.js';
 import Footer from './components/Footer.js';
 import PopupWithForm from './components/PopupWithForm.js';
-import PopupImage from './components/ImagePopup.js';
+import ImagePopup from './components/ImagePopup.js';
 function App() {
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -151,7 +151,7 @@ children={<fieldset className="popup__set">
         <button type="button" className="popup__close" id="closeDel" />
       </div>
     </div>
-    <PopupImage
+    <ImagePopup
     card={selectedCard}
     onClose={closeAllPopups}
     />
