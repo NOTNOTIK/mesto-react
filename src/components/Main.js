@@ -1,11 +1,26 @@
 import edit from '../images/VectorAvatar.png';
 import add from '../images/add.svg'
-
-
-
+import React from 'react';
+import api from '../utils/api.js'
+import Card from './Card.js';
 export default function Main(props){
 
-  
+  const [userName, setUserName] = React.useState('');
+  const [userDescription, setUserDescription] = React.useState('');
+  const [userAvatar, setUserAvatar] = React.useState('');
+  const [cards, setCards] = React.useState([]);
+  React.useEffect(() => {
+    Promise.all([api.getUserApi(), api.getAllTodos()]) 
+      .then(([userInfo, data]) => {
+        setUserName(userInfo.name);
+        setUserDescription(userInfo.about);
+        setUserAvatar(userInfo.avatar);
+        setCards(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  })
   
     return(
         <main className="main">
@@ -13,22 +28,21 @@ export default function Main(props){
         <div className="profile__card">
           <button 
           className="avatar"
-          onClick={() => props.onEditAvatar()}
+          onClick={props.onEditAvatar}
           >
             <img
-              src="#"
+              src= {userAvatar}
               alt=''
               className="profile__avatar"
-              
             />
           </button>
           <div className="profile__info">
             <div className="profile__name">
-              <h1 className="profile__title">Жак-Ив Кусто</h1>
+              <h1 className="profile__title">{userName}</h1>
               <button
                 type="button"
                 className="profile__button profile__button_type_edit"
-                onClick={() => props.onEditProfile()}
+                onClick={props.onEditProfile}
               >
                 <img
                   src={edit}
@@ -37,13 +51,13 @@ export default function Main(props){
                 />
               </button>
             </div>
-            <p className="profile__text" >Исследователь океана</p>
+            <p className="profile__text" >{userDescription}</p>
           </div>
         </div>
         <button
           type="button"
           className="profile__button profile__button_type_add"
-          onClick={() => props.onAddPlace()}
+          onClick={props.onAddPlace}
         >
           <img
             src={add}
@@ -52,7 +66,13 @@ export default function Main(props){
           />
         </button>
       </section>
-      <section className="cards"></section>
+      <section className="cards">
+      {cards.map((card) => {
+                    return (                    
+                        <Card card={card} id={card._id} onCardClick={props.onCardClick}/>
+                    )
+                })}
+      </section>
     </main>
     )
 }
