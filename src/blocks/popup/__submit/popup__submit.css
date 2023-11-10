@@ -8,12 +8,13 @@
   text-align: center;
   color: #ffffff;
   height: 50px;
-  width: 100%;
+  width: calc(100% - 44px);
   border-radius: 2px;
   padding: 0;
   border: none;
   cursor: pointer;
   margin-top: 18px;
+  margin: 0px 22px 25px;
 }
 .popup__submit:hover {
   opacity: 0.8;
@@ -25,7 +26,6 @@
 }
 @media screen and (max-width: 720px) {
   .popup__submit {
-    width: calc(100% - 44px);
     height: 46px;
     margin: 0px 22px 25px;
     font-size: 14px;
