@@ -40,7 +40,6 @@ function App() {
         onAddPlace={handleAddPlaceClick}
         onCardClick={handleCardClick}
       />
-      <template className="template" />
       <Footer />
 
       <PopupWithForm
@@ -50,7 +49,7 @@ function App() {
         buttonText="Сохранить"
         onClose={closeAllPopups}
         children={
-          <fieldset className="popup__set">
+          <>
             <label className="popup__label">
               <input
                 type="text"
@@ -75,7 +74,7 @@ function App() {
               />
               <span className="error" id="about-error" />
             </label>
-          </fieldset>
+    </>
         }
       />
       <PopupWithForm
@@ -136,27 +135,6 @@ function App() {
           </fieldset>
         }
       />
-      <div className="popup popup_type_del">
-        <div className="popup__container">
-          <h2 className="popup__title">Вы уверены?</h2>
-          <form
-            className="popup__form"
-            name="popup_form_del"
-            method="get"
-            noValidate=""
-          >
-            <fieldset className="popup__set">
-              <label>
-                <span className="error" id="del-error" />
-              </label>
-              <button type="submit" className="popup__submit" name="submitDel">
-                Удалить
-              </button>
-            </fieldset>
-          </form>
-          <button type="button" className="popup__close" id="closeDel" />
-        </div>
-      </div>
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
     </>
   );

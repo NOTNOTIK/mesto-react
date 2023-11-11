@@ -19,14 +19,14 @@ export default function Main(props) {
       .catch((err) => {
         console.log(err);
       });
-  });
-
+  }, []);
+  
   return (
     <main className="main">
       <section className="profile">
         <div className="profile__card">
           <button className="avatar" onClick={props.onEditAvatar}>
-            <img src={userAvatar} alt="" className="profile__avatar" />
+            <img src={userAvatar} alt={userName} className="profile__avatar" />
           </button>
           <div className="profile__info">
             <div className="profile__name">
@@ -53,7 +53,7 @@ export default function Main(props) {
       <section className="cards">
         {cards.map((card) => {
           return (
-            <Card card={card} id={card._id} onCardClick={props.onCardClick} />
+            <Card card={card} key={card._id} onCardClick={props.onCardClick} />
           );
         })}
       </section>

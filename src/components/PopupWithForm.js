@@ -10,10 +10,10 @@ export default function PopupWithForm(props) {
         <form
           className="popup__form"
           name={`popup_form_${props.name}`}
-          method="get"
-          noValidate=""
         >
+          <fieldset className="popup__set">
           {props.children}
+          </fieldset>
           <button type="submit" className="popup__submit" id={props.name}>
             {props.buttonText}
           </button>
