@@ -9,7 +9,7 @@ class Api{
     }
     return Promise.reject( new Error('Ошибка'));
   }
-  getAllTodos(){
+  getAllCards(){
     return fetch(`${this._url}/cards`, {
       headers: this._headers,
     }).then(this._getResponse)
@@ -66,13 +66,7 @@ deleteLike(cardId) {
 }
 
 
-/*async likeToggle(card, isLike) {
-  return fetch(`${this._baseUrl}/cards/${card}/likes`, {
-      method: isLike ? 'DELETE' : 'PUT',
-      headers: this._headers
-  })
-  .then(this._checkResponse)
-}  */
+
 
 
 }
@@ -87,5 +81,3 @@ const api = new Api({
 });
 
 export default api;
-
-// https://mesto.nomoreparties.co/v1/cohort-74/

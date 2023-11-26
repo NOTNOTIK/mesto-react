@@ -20,7 +20,7 @@ export default function Card(props) {
   const cardLikeButtonClassName = ( 
     `cards__like-button ${isLiked && 'cards__like-button_active'}` 
   );
-
+  
   return (
     <div className="cards__item">
       {isOwn && <button className="cards__del" type="button" name="buttonDelete"  onClick={handleDeleteClick} />} 

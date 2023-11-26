@@ -4,8 +4,8 @@ import { useRef } from "react";
 
 export default function AddPlacePopup(props) {
 
-const Name = React.useRef(null)
-const Link = React.useRef(null)
+const name = React.useRef(null)
+const link = React.useRef(null)
     function handleSubmit(e) {
 
         // Запрещаем браузеру переходить по адресу формы
@@ -13,8 +13,8 @@ const Link = React.useRef(null)
 
         // Передаём значения управляемых компонентов во внешний обработчик
         props.onAddPlace({
-            name: Name.current.value,
-            link: Link.current.value
+            name: name.current.value,
+            link: link.current.value
         });
 
       }
@@ -28,18 +28,18 @@ const Link = React.useRef(null)
         onClose={props.onClose}
         onSubmit={handleSubmit}
         children={
-          <fieldset className="popup__set">
+          <>
             <label>
               <input
                 type="text"
                 placeholder="Название"
                 name="title"
                 className="popup__input"
-                required=""
+                required
                 minLength={2}
                 maxLength={30}
                 autoComplete="off"
-                ref={Name}
+                ref={name}
               />
               <span className="error" id="title-error" />
             </label>
@@ -50,12 +50,12 @@ const Link = React.useRef(null)
                 name="url"
                 className="popup__input"
                 autoComplete="off"
-                required=""
-                ref={Link}
+                required
+                ref={link}
               />
               <span className="error" id="url-error" />
             </label>
-          </fieldset>
+          </>
         }
       />
       )

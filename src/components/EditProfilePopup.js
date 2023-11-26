@@ -16,10 +16,10 @@ export default function EditProfilePopup(props) {
     setDescription(currentUser.about);
   }, [currentUser]);
 
-  function handlerSetName(e) {
+  function handleSetName(e) {
     setName(e.target.value)
 }
-function handlerSetDescription(e) {
+function handleSetDescription(e) {
     setDescription(e.target.value)
 }   
 
@@ -51,8 +51,9 @@ function handlerSetDescription(e) {
               className="popup__input popup__input_type_name"
               minLength={2}
               maxLength={40}
-              required=""
-              onChange={handlerSetName}
+              value={name}
+              required
+              onChange={handleSetName}
               
             />
             <span className="error" id="name-error" />
@@ -65,8 +66,9 @@ function handlerSetDescription(e) {
               className="popup__input popup__input_type_job"
               minLength={2}
               maxLength={200}
-              onChange={handlerSetDescription}
-              required=""
+              onChange={handleSetDescription}
+              value={description}
+              required
             />
             <span className="error" id="about-error" />
           </label>

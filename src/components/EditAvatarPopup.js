@@ -22,7 +22,7 @@ export default function EditAvatarPopup(props){
         onClose={props.onClose}
         onSubmit={handleSubmit}
         children={
-          <fieldset className="popup__set">
+          <>
             <label>
               <input
                 type="url"
@@ -30,12 +30,12 @@ export default function EditAvatarPopup(props){
                 name="avatar"
                 className="popup__input"
                 autoComplete="off"
-                required=""
+                required
                 ref={inputRef}
               />
               <span className="error" id="avatar-error" />
             </label>
-          </fieldset>
+            </>
         }
         />
       )

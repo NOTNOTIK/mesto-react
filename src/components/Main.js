@@ -5,7 +5,7 @@ import Card from "./Card.js";
 import { currentUserContext } from '../contexts/CurrentUserContext';
 export default function Main(props) {
  
-
+  
   const userContext = React.useContext(currentUserContext);
   return (
     <main className="main">
