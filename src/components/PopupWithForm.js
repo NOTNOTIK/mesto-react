@@ -10,6 +10,7 @@ export default function PopupWithForm(props) {
         <form
           className="popup__form"
           name={`popup_form_${props.name}`}
+          onSubmit={props.onSubmit}
         >
           <fieldset className="popup__set">
           {props.children}

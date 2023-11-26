@@ -1,0 +1,77 @@
+
+import React from "react";
+import PopupWithForm from "./PopupWithForm";
+import { currentUserContext } from '../contexts/CurrentUserContext';
+export default function EditProfilePopup(props) {
+  const [name, setName] = React.useState("");
+  const [description, setDescription] = React.useState("");
+
+  // Подписка на контекст и установка значений с сервера
+  const currentUser = React.useContext(currentUserContext);
+
+  // После загрузки текущего пользователя из API
+  // его данные будут использованы в управляемых компонентах.
+  React.useEffect(() => {
+    setName(currentUser.name);
+    setDescription(currentUser.about);
+  }, [currentUser]);
+
+  function handlerSetName(e) {
+    setName(e.target.value)
+}
+function handlerSetDescription(e) {
+    setDescription(e.target.value)
+}   
+
+
+  function handleSubmit(e) {
+    // Запрещаем браузеру переходить по адресу формы
+    e.preventDefault();
+    // Передаём значения управляемых компонентов во внешний обработчик
+    props.onUpdateUser({
+      name,
+      about: description,
+    });
+  }
+  return (
+    <PopupWithForm
+      name="edit"
+      isOpen={props.isOpen}
+      title="Редактировать профиль"
+      buttonText="Сохранить"
+      onClose={props.onClose}
+      onSubmit={handleSubmit}
+      children={
+        <>
+          <label className="popup__label">
+            <input
+              type="text"
+              placeholder="Введите имя"
+              name="name"
+              className="popup__input popup__input_type_name"
+              minLength={2}
+              maxLength={40}
+              required=""
+              onChange={handlerSetName}
+              
+            />
+            <span className="error" id="name-error" />
+          </label>
+          <label className="popup__label">
+            <input
+              type="text"
+              placeholder="Введите род деятельности"
+              name="about"
+              className="popup__input popup__input_type_job"
+              minLength={2}
+              maxLength={200}
+              onChange={handlerSetDescription}
+              required=""
+            />
+            <span className="error" id="about-error" />
+          </label>
+        </>
+      }
+    />
+  );
+}

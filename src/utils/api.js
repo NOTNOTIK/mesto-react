@@ -65,6 +65,16 @@ deleteLike(cardId) {
   }).then(this._getResponse)
 }
 
+
+/*async likeToggle(card, isLike) {
+  return fetch(`${this._baseUrl}/cards/${card}/likes`, {
+      method: isLike ? 'DELETE' : 'PUT',
+      headers: this._headers
+  })
+  .then(this._checkResponse)
+}  */
+
+
 }
 
 
